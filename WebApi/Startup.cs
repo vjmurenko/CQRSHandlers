@@ -33,8 +33,18 @@ namespace WebApi {
 			});
 			services.AddDbContext<IDbContext, AppDbContext>(builder =>
 				builder.UseSqlServer(Configuration.GetConnectionString("Database")));
+			services.AddDbContext<IReadOnlyDbContext, ReadOnlyAppDbContext>(builder =>
+				builder.UseSqlServer(Configuration.GetConnectionString("Database")));
+			
 			services.AddAutoMapper(typeof(OrderMapperProfile));
+			
 			services.AddScoped<ICurrentUserService, CurrentUserService>();
+			
+			services.Scan(selector =>
+				selector.FromAssemblyOf<GetOrderByIdQuery>()
+					.AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
+					.AsImplementedInterfaces()
+					.WithScopedLifetime());
 			services.AddScoped<IRequestHandler<GetOrderByIdQuery, OrderDto>, GetOrderByIdHandler>();
 			services.AddScoped<IRequestHandler<CreateOrderCommand, int>, CreateOrderHandler>();
 			services.AddScoped<IRequestHandler<EditOrderCommand>, EditOrderHandler>();
