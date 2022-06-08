@@ -1,3 +1,4 @@
+using AppService.Implementations;
 using AppService.Interfaces;
 using CqrsFramework;
 using DataAccess.MsSql;
@@ -45,9 +46,7 @@ namespace WebApi {
 					.AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
 					.AsImplementedInterfaces()
 					.WithScopedLifetime());
-			services.AddScoped<IRequestHandler<GetOrderByIdQuery, OrderDto>, GetOrderByIdHandler>();
-			services.AddScoped<IRequestHandler<CreateOrderCommand, int>, CreateOrderHandler>();
-			services.AddScoped<IRequestHandler<EditOrderCommand>, EditOrderHandler>();
+			services.AddScoped<IStatisticService, StatisticService>();
 
 		}
 
