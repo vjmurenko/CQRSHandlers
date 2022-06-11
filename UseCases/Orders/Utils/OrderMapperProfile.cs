@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Entities;
-using UseCases.OrderCQ.Dto;
+using UseCases.Orders.Dto;
 
-namespace UseCases.OrderCQ.Utils
+namespace UseCases.Orders.Utils
 {
     public class OrderMapperProfile : Profile
     {

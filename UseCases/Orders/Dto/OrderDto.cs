@@ -1,4 +1,4 @@
-﻿namespace UseCases.OrderCQ.Dto
+﻿namespace UseCases.Orders.Dto
 {
     public class OrderDto : ChangeOrderDto
     {

@@ -10,11 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using UseCases.OrderCQ.Commands.CreateOrder;
-using UseCases.OrderCQ.Commands.EditOrder;
-using UseCases.OrderCQ.Dto;
-using UseCases.OrderCQ.Queries.GetOrderById;
-using UseCases.OrderCQ.Utils;
+using UseCases.Orders.Queries.GetOrderById;
+using UseCases.Orders.Utils;
+using UseCases.Products.Utils;
 using WebApi.Services;
 
 namespace WebApi {
@@ -38,6 +36,7 @@ namespace WebApi {
 				builder.UseSqlServer(Configuration.GetConnectionString("Database")));
 			
 			services.AddAutoMapper(typeof(OrderMapperProfile));
+			services.AddAutoMapper(typeof(ProductMapperProfile));
 			
 			services.AddScoped<ICurrentUserService, CurrentUserService>();
 			

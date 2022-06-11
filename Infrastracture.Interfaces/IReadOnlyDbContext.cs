@@ -7,5 +7,7 @@ namespace Infrastracture.Interfaces
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
+
+        DbSet<T> Set<T>() where T : Entity;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UseCases.OrderCQ.Dto
+namespace UseCases.Orders.Dto
 {
     public class ChangeOrderDto
     {

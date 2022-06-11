@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using CqrsFramework;
 using Microsoft.AspNetCore.Mvc;
-using UseCases.OrderCQ.Commands.CreateOrder;
-using UseCases.OrderCQ.Commands.EditOrder;
-using UseCases.OrderCQ.Dto;
-using UseCases.OrderCQ.Queries.GetOrderById;
+using UseCases.Orders.Commands.CreateOrder;
+using UseCases.Orders.Commands.EditOrder;
+using UseCases.Orders.Dto;
+using UseCases.Orders.Queries.GetOrderById;
 
 namespace WebApi.Controllers
 {
@@ -28,13 +28,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public Task<int> Create([FromBody] ChangeOrderDto chanerOrderDto, [FromServices] IRequestHandler<CreateOrderCommand, int> handler)
         {
-            return handler.HandleAsync(new CreateOrderCommand() {ChangeOrderDto = chanerOrderDto});
+            return handler.HandleAsync(new CreateOrderCommand {Dto = chanerOrderDto});
         }
 
         [HttpPut("{id}")]
         public Task<Unit> Edit([FromBody] ChangeOrderDto changeOrderDto, int id, [FromServices] IRequestHandler<EditOrderCommand> handler)
         {
-            return handler.HandleAsync(new EditOrderCommand() {ChangeOrderDto = changeOrderDto, OrderId = id});
+            return handler.HandleAsync(new EditOrderCommand {Dto = changeOrderDto, Id = id});
         }
     }
 }

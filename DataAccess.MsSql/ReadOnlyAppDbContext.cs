@@ -13,7 +13,12 @@ namespace DataAccess.MsSql
         
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        
+
+        public new DbSet<TEntity> Set<TEntity>() where TEntity : Entity
+        {
+            return base.Set<TEntity>();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<OrderItem>().HasKey(o => new {o.OrderId, o.ProductId});

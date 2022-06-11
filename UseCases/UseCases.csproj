@@ -15,7 +15,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="OrderCQ\Commands\EditOrder\" />
+      <Folder Include="Common\Commands\Update\" />
+      <Folder Include="Products\Commands\CreateProduct\" />
+      <Folder Include="Products\Dto\" />
+      <Folder Include="Products\Utils\" />
+      <Folder Include="Products\Commands\UpdateProduct\" />
+      <Folder Include="Products\Queries\" />
     </ItemGroup>
 
 </Project>
