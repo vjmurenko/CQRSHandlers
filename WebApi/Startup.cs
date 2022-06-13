@@ -39,6 +39,7 @@ namespace WebApi {
 			services.AddAutoMapper(typeof(ProductMapperProfile));
 			
 			services.AddScoped<ICurrentUserService, CurrentUserService>();
+			services.AddScoped<IDispatcher, Dispatcher>();
 			
 			services.Scan(selector =>
 				selector.FromAssemblyOf<GetOrderByIdQuery>()
