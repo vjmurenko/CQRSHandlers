@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using CqrsFramework;
 using Microsoft.AspNetCore.Mvc;
-using UseCases.Orders.Commands.CreateOrder;
-using UseCases.Orders.Commands.EditOrder;
+using UseCases.Orders.Commands.Create;
+using UseCases.Orders.Commands.Edit;
 using UseCases.Orders.Dto;
 using UseCases.Orders.Queries.GetOrderById;
 

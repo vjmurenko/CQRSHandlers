@@ -1,11 +1,10 @@
-﻿using AppService.Interfaces;
-using AutoMapper;
+﻿using AutoMapper;
 using Entities;
 using Infrastracture.Interfaces;
 using UseCases.Common.Commands.Create;
 using UseCases.Orders.Dto;
 
-namespace UseCases.Orders.Commands.CreateOrder
+namespace UseCases.Orders.Commands.Create
 {
 	public class CreateOrderHandler : CreateEntityCommandHandler<Order, CreateOrderCommand, ChangeOrderDto>
 	{
