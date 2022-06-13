@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using UseCases.Orders.Queries.GetOrderById;
 using UseCases.Products.Commands.Create;
 using UseCases.Products.Commands.Delete;
+using UseCases.Products.Commands.DeleteAll;
 using UseCases.Products.Commands.Update;
 using UseCases.Products.Dto;
 using UseCases.Products.Queries;
@@ -36,6 +37,12 @@ namespace WebApi.Controllers
         public Task Delete(int id, [FromServices] IRequestHandler<DeleteProductCommand> requestHandler)
         {
             return requestHandler.HandleAsync(new DeleteProductCommand() {Id = id});
+        }
+
+        [HttpDelete]
+        public Task DeleteAll([FromBody] DeleteAllDto deleteAllDto, [FromServices] IRequestHandler<DeleteAllProductsCommand> requestHandler)
+        {
+            return requestHandler.HandleAsync(new DeleteAllProductsCommand(){DeleteAllDto = deleteAllDto});
         }
     }
 }
