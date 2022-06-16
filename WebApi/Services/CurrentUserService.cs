@@ -1,5 +1,4 @@
-﻿using AppService.Interfaces;
-using Infrastracture.Interfaces;
+﻿using Infrastracture.Interfaces;
 
 namespace WebApi.Services
 {

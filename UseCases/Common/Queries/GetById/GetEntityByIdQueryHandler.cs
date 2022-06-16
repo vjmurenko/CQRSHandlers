@@ -11,7 +11,7 @@ namespace UseCases.Common.Queries.GetById
 {
 	public abstract class GetEntityByIdQueryHandler<TEntity, TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
 		where TEntity : Entity
-		where TRequest : GetEntityByIdQuery
+		where TRequest : GetEntityByIdQuery<TResponse>
 	{
 		protected readonly IReadOnlyDbContext _readOnlyDbContext;
 		protected readonly IMapper _mapper;

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using UseCases.Orders.Middlewares;
 using UseCases.Orders.Queries.GetOrderById;
 using UseCases.Orders.Utils;
 using UseCases.Products.Utils;
@@ -40,7 +41,9 @@ namespace WebApi {
 			
 			services.AddScoped<ICurrentUserService, CurrentUserService>();
 			services.AddScoped<IDispatcher, Dispatcher>();
-			
+			services.AddScoped(typeof(IMiddleware<,>), typeof(CheckOrderMiddleware<,>));
+			services.AddScoped(typeof(IMiddleware<,>), typeof(CheckUpdateOrderMiddleware<,>));
+
 			services.Scan(selector =>
 				selector.FromAssemblyOf<GetOrderByIdQuery>()
 					.AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))

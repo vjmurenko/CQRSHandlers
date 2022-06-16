@@ -1,11 +1,6 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
-using CqrsFramework;
+﻿using AutoMapper;
 using Entities;
 using Infrastracture.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using UseCases.Common.Queries.GetById;
 using UseCases.Orders.Dto;
 

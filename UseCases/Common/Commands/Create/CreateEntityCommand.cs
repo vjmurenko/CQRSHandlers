@@ -1,6 +1,8 @@
-﻿namespace UseCases.Common.Commands.Create
+﻿using CqrsFramework;
+
+namespace UseCases.Common.Commands.Create
 {
-	public class CreateEntityCommand<TDto>
+	public class CreateEntityCommand<TDto> : IRequest<int>
 	{
 		public TDto Dto { get; set; }
 	}
