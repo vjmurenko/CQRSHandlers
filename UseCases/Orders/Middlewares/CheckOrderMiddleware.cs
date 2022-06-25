@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AppService.Interfaces.Exceptions;
 using CqrsFramework;
 using Infrastracture.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -23,7 +24,7 @@ namespace UseCases.Orders.Middlewares
             var orderCount = await _readOnlyDbContext.Orders.CountAsync(o => o.Id == request.Id && o.Email == _currentUserService.Email);
             if (orderCount != 1)
             {
-                throw new Exception("Not found");
+                throw new NotFoundException();
             }
 
             return await next();

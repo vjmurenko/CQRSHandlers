@@ -1,14 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using AppService.Interfaces.Exceptions;
 using Autofac.Extensions.DependencyInjection;
 using CqrsFramework;
 using DataAccess.MsSql;
 using Entities;
 using Infrastracture.Interfaces;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using UseCases.Orders.Commands.Edit;
 using UseCases.Orders.Dto;
 using UseCases.Orders.Queries.GetOrderById;
 using WebApi;
@@ -47,9 +48,16 @@ namespace Tests
             Assert.Equal(2, get1Result.Id);
 
             Func<Task<OrderDto>> get2Delegate = () => dispatcher.SendAsync(new GetOrderByIdQuery() {Id = 1});
-            await Assert.ThrowsAsync<Exception>(get2Delegate);
+            await Assert.ThrowsAsync<NotFoundException>(get2Delegate);
             
+            Func<Task> putDelegate = () => dispatcher.SendAsync(new EditOrderCommand(){Id = 1, 
+                Dto = new ChangeOrderDto(){Items = new List<OrderItemDto>(){new(){ProductId = 1, Quantity = 2}}}});
+            await Assert.ThrowsAsync<NotFoundException>(putDelegate);
             
+            Func<Task> putDelegate2 = () => dispatcher.SendAsync(new EditOrderCommand(){Id = 2, 
+                Dto = new ChangeOrderDto(){Items = new List<OrderItemDto>(){new(){ProductId = 1, Quantity = 1}}}});
+            await Assert.ThrowsAsync<LowQuantityException>(putDelegate2);
+
         }
     }
 }
