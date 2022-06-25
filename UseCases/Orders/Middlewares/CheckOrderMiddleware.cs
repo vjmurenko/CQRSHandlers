@@ -19,6 +19,7 @@ namespace UseCases.Orders.Middlewares
         }
         public async Task<TResponse> HandleAsync(TRequest request, HandlerDelegate<TResponse> next)
         {
+            var orders = await _readOnlyDbContext.Orders.ToListAsync();
             var orderCount = await _readOnlyDbContext.Orders.CountAsync(o => o.Id == request.Id && o.Email == _currentUserService.Email);
             if (orderCount != 1)
             {
